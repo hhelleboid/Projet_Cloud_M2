@@ -4,7 +4,7 @@
 streamlit==1.50.0
 
 # Framework LangChain & Intégrations
-langchain==0.3.27
+langchain
 langchain-community==0.3.31
 langchain-core
 langchain-ollama==1.0.0
