@@ -1,0 +1,24 @@
+
+
+# Interface Utilisateur
+streamlit==1.50.0
+
+# Framework LangChain & Intégrations
+langchain==0.3.27
+langchain-community==0.3.31
+langchain-core==1.0.1
+langchain-ollama==1.0.0
+# langchain-chroma n'est pas installé chez toi, et tu n'en as pas besoin
+# car tu importes Chroma depuis langchain_community
+
+# Base de données vectorielle
+chromadb==1.1.1
+
+# Modèles de Reranking & Embeddings
+sentence-transformers==5.1.2
+
+# Traitement PDF
+pymupdf==1.26.5
+pypdf==6.1.3
+
+#  pip install -r requirements.txt
