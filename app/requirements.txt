@@ -6,7 +6,7 @@ streamlit==1.50.0
 # Framework LangChain & Intégrations
 langchain==0.3.27
 langchain-community==0.3.31
-langchain-core==0.9.9
+langchain-core
 langchain-ollama==1.0.0
 # langchain-chroma n'est pas installé chez toi, et tu n'en as pas besoin
 # car tu importes Chroma depuis langchain_community
