@@ -42,6 +42,7 @@ def load_resources():
     
     # 1. Embeddings
     embeddings = OllamaEmbeddings(model=Config.EMBEDDING_MODEL)
+    base_url="http://ollama-server:11434"
     
     # 2. ChromaDB
     db = Chroma(
