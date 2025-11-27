@@ -20,6 +20,9 @@ import re
 from collections import defaultdict
 
 
+LLM_BASE_URL = os.getenv("LLM_BASE_URL", "http://localhost:11434")
+
+
 CHROMA_PATH = "chromadb"
 DATA_PATH = "data_pdf"
 SPLIT_REGEX = re.compile(r"\.(?:\n\s*\n+|\n)")  # '.' puis '\n' OU '.' puis '\n' + blancs + '\n+'
@@ -506,6 +509,7 @@ def lister_fichiers(dossier):
 def get_embedding_function():
     embeddings = OllamaEmbeddings(
         model="nomic-embed-text",       # ne pas oublier d'installer le modele nomic-embed-text sur ollama
+        LLM_BASE_URL=LLM_BASE_URL
     )
     return embeddings
 

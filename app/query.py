@@ -7,6 +7,8 @@ from langchain_ollama.llms import OllamaLLM
 from langchain_ollama import OllamaEmbeddings
 from sentence_transformers import CrossEncoder
 
+
+
 # --- CONFIGURATION DE LA PAGE ---
 st.set_page_config(page_title="RAG Assistant", page_icon="🤖", layout="wide")
 
@@ -15,8 +17,8 @@ class Config:
     CHROMA_PATH = "chromadb"
     RERANKER_PATH = "./models/mmarco-mMiniLMv2-L12-H384-v1" 
     EMBEDDING_MODEL = "nomic-embed-text"
-    # On laisse le choix du modèle LLM dans l'interface
     DEFAULT_LLM_MODEL = "mistral:7b-instruct-q5_K_M"
+    LLM_BASE_URL = os.getenv("LLM_BASE_URL", "http://localhost:11434") # # URL du serveur LLM (autre conteneur), ne pas oublier de mettre les 2 containers sur le même réseau 
 
 PROMPT_TEMPLATE = """Tu es un assistant francophone strictement ancré au contexte fourni.
 Réponds en français, de façon concise et exacte.
@@ -41,7 +43,7 @@ def load_resources():
     start_load = time.perf_counter()
     
     # 1. Embeddings
-    embeddings = OllamaEmbeddings(model=Config.EMBEDDING_MODEL)
+    embeddings = OllamaEmbeddings(model=Config.EMBEDDING_MODEL, base_url=Config.LLM_BASE_URL)
     
     # 2. ChromaDB
     db = Chroma(
@@ -155,6 +157,7 @@ if query_text := st.chat_input("Posez votre question sur les documents..."):
             
             llm = OllamaLLM(
                 model=llm_model,
+                base_url=Config.LLM_BASE_URL,
                 num_thread=4,
                 num_ctx=2048, # Sécurité mémoire
                 temperature=0.1
