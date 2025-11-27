@@ -13,7 +13,7 @@ st.set_page_config(page_title="RAG Assistant", page_icon="🤖", layout="wide")
 # --- 1. CONFIGURATION & CONSTANTES ---
 class Config:
     CHROMA_PATH = "chromadb"
-    RERANKER_PATH = "./models/mmarco-mMiniLMv2-L12-H384-v1" 
+    RERANKER_PATH = "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
     EMBEDDING_MODEL = "nomic-embed-text"
     # On laisse le choix du modèle LLM dans l'interface
     DEFAULT_LLM_MODEL = "mistral:7b-instruct-q5_K_M"
@@ -41,8 +41,8 @@ def load_resources():
     start_load = time.perf_counter()
     
     # 1. Embeddings
-    embeddings = OllamaEmbeddings(model=Config.EMBEDDING_MODEL)
-    base_url="http://ollama-server:11434"
+    OLLAMA_HOST = "http://stupefied_curie:11434"
+    embeddings = OllamaEmbeddings(model=Config.EMBEDDING_MODEL,base_url=OLLAMA_HOST)
     
     # 2. ChromaDB
     db = Chroma(
@@ -52,11 +52,7 @@ def load_resources():
     )
     
     # 3. Reranker
-    try:
-        reranker = CrossEncoder(Config.RERANKER_PATH, device="cpu")
-    except Exception as e:
-        st.warning(f"Modèle local non trouvé, téléchargement... ({e})")
-        reranker = CrossEncoder("cross-encoder/mmarco-mMiniLMv2-L12-H384-v1", device="cpu")
+    reranker = CrossEncoder(Config.RERANKER_PATH, device="cpu")
     
     print(f"✅ Chargement terminé en {time.perf_counter() - start_load:.2f}s")
     return db, reranker
