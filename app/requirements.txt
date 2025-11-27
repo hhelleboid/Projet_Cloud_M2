@@ -11,6 +11,19 @@ langchain-ollama==1.0.0
 # langchain-chroma n'est pas installé chez toi, et tu n'en as pas besoin
 # car tu importes Chroma depuis langchain_community
 
+langchain_community.document_loaders
+langchain_text_splitters
+langchain_core.documents
+langchain_ollama
+langchain_community.vectorstores
+langchain_core.documents
+fitz
+re
+collections
+copy
+statistics
+typing
+
 # Base de données vectorielle
 chromadb==1.1.1
 
