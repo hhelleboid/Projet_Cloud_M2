@@ -672,7 +672,7 @@ if __name__ == "__main__":
         print(f"Longueur: {len(doc.page_content)} caractères")
         print(f"Contenu: {doc.page_content}")
     
-    # ========== AJOUT À LA BASE VECTORIELLE (OPTIONNEL) ==========
+    # ========== AJOUT À LA BASE VECTORIELLE ==========
 
     # print("\n=== AJOUT À LA BASE VECTORIELLE ===")
     # add_to_vectorstore(docs)
