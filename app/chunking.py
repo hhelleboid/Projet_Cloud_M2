@@ -21,6 +21,7 @@ from collections import defaultdict
 
 
 CHROMA_PATH = "chromadb"
+LLM_BASE_URL = "http://localhost:11434"
 DATA_PATH = "data_pdf"
 SPLIT_REGEX = re.compile(r"\.(?:\n\s*\n+|\n)")  # '.' puis '\n' OU '.' puis '\n' + blancs + '\n+'
 # Découpe approximative en phrases : ponctuation forte suivie d'espaces
@@ -506,6 +507,7 @@ def lister_fichiers(dossier):
 def get_embedding_function():
     embeddings = OllamaEmbeddings(
         model="nomic-embed-text",       # ne pas oublier d'installer le modele nomic-embed-text sur ollama
+        LLM_BASE_URL="http://localhost:11434"
     )
     return embeddings
 
