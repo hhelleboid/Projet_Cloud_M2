@@ -153,7 +153,7 @@ if query_text := st.chat_input("Posez votre question sur les documents..."):
             
             llm = OllamaLLM(
                 model=llm_model,
-                base_url="http://localhost:11434",
+                base_url=""http://stupefied_curie:11434"",
                 num_thread=4,
                 num_ctx=2048, # Sécurité mémoire
                 temperature=0.1
