@@ -17,7 +17,7 @@ class Config:
     EMBEDDING_MODEL = "nomic-embed-text"
     # On laisse le choix du modèle LLM dans l'interface
     DEFAULT_LLM_MODEL = "mistral:7b-instruct-q5_K_M"
-    LLM_BASE_URL = os.getenv("LLM_BASE_URL", "http://localhost:11434")
+    LLM_BASE_URL = os.getenv("LLM_BASE_URL", "http://stupefied_curie:11434")
 
 PROMPT_TEMPLATE = """Tu es un assistant francophone strictement ancré au contexte fourni.
 Réponds en français, de façon concise et exacte.
