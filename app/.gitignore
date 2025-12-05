@@ -1,0 +1,9 @@
+# --- Python ---
+__pycache__/
+
+# --- Configuration & Secrets (TRES IMPORTANT) ---
+.env
+
+# --- Données du projet (RAG) ---
+# On ne versionne pas la base de données vectorielle (trop lourd/binaire)
+chromadb/
