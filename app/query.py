@@ -17,7 +17,7 @@ class Config:
     EMBEDDING_MODEL = "nomic-embed-text"
     # On laisse le choix du modèle LLM dans l'interface
     DEFAULT_LLM_MODEL = "mistral:7b-instruct-q5_K_M"
-    LLM_BASE_URL = os.getenv("LLM_BASE_URL", "http://stupefied_curie:11434")
+    LLM_BASE_URL = os.getenv("LLM_BASE_URL", "http://ollama-server:11434")
 
 PROMPT_TEMPLATE = """Tu es un assistant francophone strictement ancré au contexte fourni.
 Réponds en français, de façon concise et exacte.
@@ -42,7 +42,7 @@ def load_resources():
     start_load = time.perf_counter()
     
     # 1. Embeddings
-    OLLAMA_HOST = "http://stupefied_curie:11434"
+    OLLAMA_HOST = "http://ollama-server:11434"
     embeddings = OllamaEmbeddings(model=Config.EMBEDDING_MODEL,base_url=OLLAMA_HOST)
     
     # 2. ChromaDB
@@ -153,7 +153,7 @@ if query_text := st.chat_input("Posez votre question sur les documents..."):
             
             llm = OllamaLLM(
                 model=llm_model,
-                base_url="http://stupefied_curie:11434",
+                base_url=Config.OLLAMA_HOST,
                 num_thread=4,
                 num_ctx=2048, # Sécurité mémoire
                 temperature=0.1
