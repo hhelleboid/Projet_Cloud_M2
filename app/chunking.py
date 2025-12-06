@@ -604,83 +604,8 @@ def add_context_to_chunks(chunks: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         })
     
     return enriched
-# if __name__ == "__main__":
-#     # Exemple d'utilisation
-#     pdf_file = "exemple.pdf"
-#     chunks = extract_hierarchical_chunks(pdf_file)
-#     print(f"Extracted {len(chunks)} hierarchical chunks.")
-
-#     split_chunks = split_chunks_by_regex(chunks)
-#     print(f"Split into {len(split_chunks)} chunks by regex.")
-
-#     final_chunks = split_paragraph_chunks_by_sentence_length(split_chunks)
-#     print(f"Final split into {len(final_chunks)} chunks by sentence length.")
-
-
-# if __name__ == "__main__":
-#     # Lister tous les fichiers PDF dans le dossier DATA_PATH
-#     all_files = lister_fichiers(DATA_PATH)
-    
-#     print(f"Fichiers trouvés: {len(all_files)}")
-#     for fichier in all_files:
-#         print(f"  - {fichier}")
-    
-#     # ========== ÉTAPE 1: Extraction hiérarchique ==========
-#     print("\n=== ÉTAPE 1: Extraction hiérarchique ===")
-#     hierarchical_chunks = [extract_hierarchical_chunks(str(fichier)) for fichier in all_files]
-    
-#     total_hierarchical = sum(len(chunk) for chunk in hierarchical_chunks)
-#     print(f"Extracted {total_hierarchical} hierarchical chunks from {len(all_files)} file(s).")
-    
-#     # ========== ÉTAPE 2: Découpe par regex ==========
-#     print("\n=== ÉTAPE 2: Découpe par regex ===")
-#     regex_split_chunks = [split_chunks_by_regex(chunk) for chunk in hierarchical_chunks]
-    
-#     total_regex = sum(len(chunk) for chunk in regex_split_chunks)
-#     print(f"Split into {total_regex} chunks by regex.")
-    
-#     # ========== ÉTAPE 3: Découpe par longueur de phrases ==========
-#     print("\n=== ÉTAPE 3: Découpe par longueur de phrases ===")
-#     final_chunks = [
-#         split_paragraph_chunks_by_sentence_length(chunk, max_chars=1600, hard_upper_bound=1800)
-#         for chunk in regex_split_chunks
-#     ]
-    
-#     # # ========== Etape 4 enrichissement avec contexte ==========
-#     # print("\n=== ÉTAPE 4: Enrichissement avec contexte ===")
-#     # enriched_final_chunks = [add_context_to_chunks(chunk) for chunk in final_chunks]
-
-#     total_final = sum(len(chunk) for chunk in final_chunks)
-#     print(f"Final split into {total_final} chunks by sentence length.")
-    
-#     # ========== CONVERSION EN DOCUMENTS LANGCHAIN ==========
-#     print("\n=== CONVERSION EN DOCUMENTS ===")
-#     docs = [
-#         Document(page_content=c["page_content"], metadata=c["metadata"])
-#         for chunk in final_chunks
-#         for c in chunk
-#     ]
-    
-#     print(f"Created {len(docs)} Document objects.")
-    
-#     # ========== AFFICHAGE D'EXEMPLES ==========
-#     print("\n=== EXEMPLES DE DOCUMENTS ===")
-#     for i, doc in enumerate(docs[:10]):  # Affiche les 10 premiers
-#         print(f"\n--- Document {i+1} ---")
-#         print(f"Section: {doc.metadata.get('section', 'N/A')}")
-#         print(f"Page: {doc.metadata.get('current_page', 'N/A')}")
-#         print(f"Longueur: {len(doc.page_content)} caractères")
-#         print(f"Contenu: {doc.page_content}")
-    
-    # ========== AJOUT À LA BASE VECTORIELLE ==========
-
-    # print("\n=== AJOUT À LA BASE VECTORIELLE ===")
-    # add_to_vectorstore(docs)
-    # print("Documents ajoutés à ChromaDB avec succès!")
     
     
-
-
 def process_all_documents():
     """Fonction principale pour lancer tout le processus d'indexation"""
     print(" Démarrage de l'indexation automatique...")
