@@ -18,7 +18,7 @@ st.set_page_config(page_title="RAG Assistant", page_icon="🤖", layout="wide")
 class Config:
     CHROMA_PATH = "chromadb"
     # RERANKER_PATH = "./models/mmarco-mMiniLMv2-L12-H384-v1" 
-    DATA_PATH = "data_pdf" # Nom du dossier contenant vos PDFs
+    DATA_PATH = "data_pdf" # Nom du dossier contenant les PDFs
     RERANKER_PATH = "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
     EMBEDDING_MODEL = "nomic-embed-text"
     DEFAULT_LLM_MODEL = "gemma3:1b"
