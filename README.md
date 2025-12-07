@@ -22,7 +22,7 @@ Avant de commencer, assurez-vous d'avoir installé :
 
 1. **Python 3.10+** : [Télécharger Python](https://www.python.org/downloads/)
 2. **Ollama** : [Télécharger Ollama](https://ollama.com/)
-3. **Git** (optionnel, pour cloner le projet).
+3. **Git** (pour cloner le projet).
 
 ---
 
