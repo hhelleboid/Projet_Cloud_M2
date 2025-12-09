@@ -1,0 +1,16 @@
+# backend/Dockerfile
+FROM ollama/ollama:latest
+
+# On copie un script qui va lancer ollama et télécharger le modèle PENDANT le build
+COPY ./entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+# On exécute le script pour le fonctionnement du modèle dans l'image
+RUN /entrypoint.sh
+
+# Le port par défaut d'Ollama
+EXPOSE 11434
+
+
+# docker build -t mon-backend-ollama .
+# docker run -p 11434:11434 mon-backend-ollama

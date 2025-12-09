@@ -1,0 +1,26 @@
+# app/Dockerfile
+FROM python:3.11-slim
+WORKDIR /app
+
+# On installe uv (le remplaçant ultra-rapide de pip)
+# COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv
+
+#installation pytorch pour cpu
+RUN pip install torch --index-url https://download.pytorch.org/whl/cpu   
+
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+# On utilise uv pour installer les paquets au niveau système
+# RUN uv pip install --system -r requirements.txt
+
+COPY . .
+
+EXPOSE 8501
+CMD ["streamlit", "run", "query.py", "--server.address=0.0.0.0"]
+
+# docker build --progress=plain -t mon-frontend-app . 
+# docker build -t mon-frontend-app .
+# docker run -p 8501:8501 mon-frontend-app
+
+# docker run -p 8501:8501 -e LLM_BASE_URL="http://host.docker.internal:11434" mon-frontend-app
+# dans le navigateur, aller à http://localhost:8501

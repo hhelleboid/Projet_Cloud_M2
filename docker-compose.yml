@@ -1,0 +1,33 @@
+# Pour les tests en local avec Docker Compose
+services:
+  # --- SERVICE 1 : BACKEND (OLLAMA) ---
+  backend:
+    build: 
+      context: ./backend_ollama # Construit l'image depuis le dossier backend
+    container_name: rag-backend
+    ports:
+      - "11434:11434" # Permet d'accéder à l'API depuis votre PC si besoin
+    networks:
+      - rag-network
+
+  # --- SERVICE 2 : FRONTEND (STREAMLIT) ---
+  frontend:
+    build: 
+      context: ./app # Construit l'image depuis le dossier frontend
+    container_name: rag-frontend
+    ports:
+      - "8501:8501" # Accès via http://localhost:8501
+    environment:
+      # On dit à Streamlit que Ollama n'est pas sur "localhost" mais sur "http://backend:11434"
+      - LLM_BASE_URL=http://backend:11434
+    depends_on:
+      - backend # Attend que le backend démarre avant de lancer le frontend
+    networks:
+      - rag-network
+
+# Définition du réseau virtuel pour qu'ils se voient
+networks:
+  rag-network:
+    driver: bridge
+
+#  docker-compose up --build
