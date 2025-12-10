@@ -15,8 +15,10 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
+RUN mkdir -p data_pdf && chmod 777 data_pdf
+
 EXPOSE 8501
-CMD ["streamlit", "run", "query.py", "--server.address=0.0.0.0"]
+CMD ["streamlit", "run", "query.py", "--server.address=0.0.0.0", "--server.enableXsrfProtection=false", "--server.enableCORS=false"]
 
 # docker build --progress=plain -t mon-frontend-app . 
 # docker build -t mon-frontend-app .
