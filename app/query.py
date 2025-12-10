@@ -10,15 +10,19 @@ from sentence_transformers import CrossEncoder
 from chunking import process_all_documents 
 
 
+# Sur Azure, on définira cette variable à "/data" via la config du conteneur.
+BASE_PERSIST_PATH = os.getenv("PERSIST_DIRECTORY", ".")
 
 # --- CONFIGURATION DE LA PAGE ---
 st.set_page_config(page_title="RAG Assistant", page_icon="🤖", layout="wide")
 
 # --- 1. CONFIGURATION & CONSTANTES ---
 class Config:
-    CHROMA_PATH = "chromadb"
-    # RERANKER_PATH = "./models/mmarco-mMiniLMv2-L12-H384-v1" 
-    DATA_PATH = "data_pdf" # Nom du dossier contenant les PDFs
+    # CHROMA_PATH = "chromadb"
+    # DATA_PATH = "data_pdf" # Nom du dossier contenant les PDFs
+    CHROMA_PATH = os.path.join(BASE_PERSIST_PATH, "chromadb")
+    DATA_PATH = os.path.join(BASE_PERSIST_PATH, "data_pdf")
+    
     RERANKER_PATH = "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
     EMBEDDING_MODEL = "nomic-embed-text"
     DEFAULT_LLM_MODEL = "gemma3:1b"
@@ -41,7 +45,7 @@ Réponse:"""
 
 
 # --- GESTION DE LA PERSISTANCE ---
-HISTORY_FILE = "chat_history.json"
+HISTORY_FILE = os.path.join(BASE_PERSIST_PATH, "chat_history.json")
 
 def load_chat_history():
     if os.path.exists(HISTORY_FILE):
