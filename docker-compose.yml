@@ -1,6 +1,6 @@
 # Pour les tests en local avec Docker Compose
 services:
-  # --- SERVICE 1 : BACKEND (OLLAMA) ---
+  #  SERVICE 1 : BACKEND (OLLAMA) 
   backend:
     build: 
       context: ./backend_ollama # Construit l'image depuis le dossier backend
@@ -10,7 +10,7 @@ services:
     networks:
       - rag-network
 
-  # --- SERVICE 2 : FRONTEND (STREAMLIT) ---
+  # SERVICE 2 : FRONTEND (STREAMLIT)
   frontend:
     build: 
       context: ./app # Construit l'image depuis le dossier frontend
