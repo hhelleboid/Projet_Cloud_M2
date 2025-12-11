@@ -28,12 +28,6 @@ class TestRAGFunctions(unittest.TestCase):
         """
         self.assertTrue(os.getenv("ACR_NAME") is not None, "ACR_NAME environment variable must be set in the CI workflow.")
         
-    def test_c_placeholder_test_to_ensure_suite_runs(self):
-        """
-        Placeholder test. Real tests would check the output structure of chunking.py
-        or validity of document loading.
-        """
-        self.assertTrue(True, "Placeholder check failed (replace with actual functional tests).")
 
 if __name__ == '__main__':
     unittest.main()
