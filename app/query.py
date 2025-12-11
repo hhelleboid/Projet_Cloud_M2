@@ -8,7 +8,13 @@ from langchain_ollama.llms import OllamaLLM
 from langchain_ollama import OllamaEmbeddings
 from sentence_transformers import CrossEncoder
 # from chunking import process_all_documents 
-from app.chunking import process_all_documents
+# from app.chunking import process_all_documents
+try:
+    # Cas 1 : Docker / Streamlit (Exécution depuis le dossier app)
+    from chunking import process_all_documents
+except ImportError:
+    # Cas 2 : Tests CI / Exécution depuis la racine du projet
+    from app.chunking import process_all_documents
 
 
 

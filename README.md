@@ -89,15 +89,32 @@ Une fois tout installé, lancez l'interface Streamlit :
 streamlit run app/query.py
 ```
 
+## 🐳 Démarrage rapide avec Docker 
+
+Au lieu d'installer Python et Ollama manuellement, vous pouvez lancer tout le projet (Frontend + Backend) en une seule commande grâce à **Docker Compose**.
+
+```bash 
+docker-compose up --build
+```
+
 ## 📂 Structure du projet
 
 ```text
 Projet_Cloud_M2/
-├── app/
-│   ├── query.py           # Interface principale (Streamlit) & Logique RAG
+├── .github/
+│   └── workflows/         # Configuration du pipeline CI GitHub Actions
+│          ├── ci-test.yml #  Exec Test CI
+├── app/                   # FRONTEND (Streamlit)
+│   ├── Dockerfile         # Configuration de l'image Frontend
+│   ├── query.py           # Interface principale & Logique RAG
 │   ├── chunking.py        # Script de découpage et d'ingestion des PDF
-│   ├── .env               # Configuration locale (non versionné)
-│   ├── chat_history.json  # Historique de conversation (généré auto)
-│   └── data_pdf/          # Dossier de stockage des PDF uploadés
-├── chromadb/              # Base de données vectorielle (généré auto)
-└── requirements.txt       # Liste des dépendances
+│   ├── requirements.txt   # Dépendances Python
+│   └── data_pdf/          # Dossier de stockage temporaire des PDF
+├── backend_ollama/        # BACKEND (Ollama)
+│   ├── Dockerfile         # Configuration de l'image Backend
+│   └── entrypoint.sh      # Script d'installation des modèles dans l'image
+├── tests/                 # TESTS UNITAIRES
+    └── test_rag_pipeline.py # Tests de configuration
+```
+
+
