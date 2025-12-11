@@ -7,7 +7,9 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_ollama.llms import OllamaLLM
 from langchain_ollama import OllamaEmbeddings
 from sentence_transformers import CrossEncoder
-from chunking import process_all_documents 
+# from chunking import process_all_documents 
+from app.chunking import process_all_documents
+
 
 
 # Sur Azure, on définira cette variable à "/data" via la config du conteneur.

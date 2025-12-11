@@ -34,7 +34,7 @@ class TestRAGFunctions(unittest.TestCase):
         # Vérifier le protocole
         self.assertTrue(base_url.startswith("http://"), "L'URL doit commencer par http://")
         
-        # Vérifier le nom d'hôte (Doit correspondre à votre main.tf)
+        # Vérifier le nom d'hôte 
         valid_hosts = ["ca-backend", "localhost"]
         
         is_valid_host = any(host in base_url for host in valid_hosts)
