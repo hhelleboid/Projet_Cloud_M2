@@ -42,7 +42,7 @@ class TestRAGFunctions(unittest.TestCase):
         self.assertTrue(is_valid_host, 
                       f"L'URL '{base_url}' ne contient aucun nom d'hôte valide (attendu: ca-backend pour Azure).")
     
-    def test_import_streamlit():
+    def test_import_streamlit(self):
         """Vérifie que les dépendances sont bien installées"""
         try:
             import streamlit
