@@ -44,6 +44,13 @@ Question: {question}
 Réponse:"""
 
 
+if not os.path.exists(Config.DATA_PATH):
+    os.makedirs(Config.DATA_PATH)
+    print(f"Dossier {Config.DATA_PATH} créé automatiquement.")
+
+if not os.path.exists(Config.CHROMA_PATH):
+    os.makedirs(Config.CHROMA_PATH)
+
 # --- GESTION DE LA PERSISTANCE ---
 HISTORY_FILE = os.path.join(BASE_PERSIST_PATH, "chat_history.json")
 
